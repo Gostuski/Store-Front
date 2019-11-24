@@ -32,9 +32,7 @@
             <b-dropdown-item v-on:click.prevent="redirect">
               My Posts
             </b-dropdown-item>
-            <b-dropdown-item v-on:click.prevent="logOut"
-              >Sign Out</b-dropdown-item
-            >
+            <b-dropdown-item v-on:click="logOut">Sign Out</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -47,6 +45,10 @@ export default {
   methods: {
     redirect() {
       this.$router.push('/myposts');
+    },
+    logOut() {
+      this.$cookie.delete('user-token');
+      window.location.reload();
     }
   }
 };
