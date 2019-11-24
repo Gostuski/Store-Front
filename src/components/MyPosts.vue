@@ -20,7 +20,7 @@ export default {
   },
   created() {
     axios
-      .get('http://localhost:5000/myposts')
+      .get('http://localhost:5000/userposts')
       .then(result => {
         this.posts = result.data;
         console.log(result.data);

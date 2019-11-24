@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <h1>{{ this.Message }}</h1>
     <b-form>
       <b-form-group
         id="input-group-1"
@@ -27,7 +28,11 @@
       </b-form-group>
       <b-row>
         <b-col lg="1" class="pb-2">
-          <b-button pill v-on:click.prevent="submit" type="submit" variant="primary"
+          <b-button
+            pill
+            v-on:click.prevent="submit"
+            type="submit"
+            variant="primary"
             >Submit</b-button
           >
         </b-col>
@@ -51,19 +56,27 @@ export default {
       form: {
         email: '',
         password: ''
-      }
+      },
+      Message: ''
     };
   },
   methods: {
     submit() {
-      axios.post('http://localhost:5000/login', this.form).then(res => {
-        if (res.data.msg) {
-          console.log('Ne moze');
-        } else {
-          this.$cookie.set('user-token', res.data.token, { expires: '2h' });
-          this.$router.push('/posts');
-        }
-      }).catch(err => console.log(err));
+      if (this.form.email.length < 1 || this.form.password.length < 1) {
+        this.Message = 'Fill in empty fields';
+      } else {
+        axios
+          .post('http://localhost:5000/login', this.form)
+          .then(res => {
+            if (res.data.msg) {
+              this.Message = res.date.msg
+            } else {
+              this.$cookie.set('user-token', res.data.token, { expires: '2h' });
+              this.$router.push('/posts');
+            }
+          })
+          .catch(err => console.log(err));
+      }
     }
   }
 };

@@ -39,7 +39,7 @@ export default {
             if(this.form.post.length < 1 || this.form.price.length < 1) {
                 this.message = '- you cannot leave empty fields - '
             } else {
-                axios.post(`http://localhost:5000/posts`, this.form)
+                axios.post(`http://localhost:5000/allposts`, this.form)
                 .then(response => {
                     response;
                     this.$router.push('/posts');

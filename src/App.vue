@@ -2,8 +2,6 @@
   <div id="app">
     <Header/>
     <router-view/>
-    <!-- <SignIn/>
-    <SignUp/> -->
   </div>
 </template>
 

@@ -1,10 +1,8 @@
 <template>
   <div class="container">
+    <h5>{{ Message }}</h5>
     <b-form>
-      <b-form-group
-        id="input-group-1"
-        label="Name:"
-        label-for="input-1"
+      <b-form-group id="input-group-1" label="Name:" label-for="input-1"
         ><b-form-input
           id="input-1"
           required
@@ -35,7 +33,11 @@
           placeholder="Enter password"
         ></b-form-input>
       </b-form-group>
-      <b-form-group id="input-group-3" label="Confirm password:" label-for="input-3">
+      <b-form-group
+        id="input-group-3"
+        label="Confirm password:"
+        label-for="input-3"
+      >
         <b-form-input
           id="input-4"
           required
@@ -44,13 +46,19 @@
           placeholder="Confirm password"
         ></b-form-input>
       </b-form-group>
-      <b-button pill v-on:click.prevent="register" type="submit" variant="primary">Register</b-button>
+      <b-button
+        pill
+        v-on:click.prevent="register"
+        type="submit"
+        variant="primary"
+        >Register</b-button
+      >
     </b-form>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 export default {
   data() {
     return {
@@ -59,21 +67,29 @@ export default {
         password: '',
         password2: '',
         name: ''
-      }
+      },
+      Message: ''
     };
   },
   methods: {
     // onSubmit(evt) {
-      //   alert(JSON.stringify(this.form));
+    //   alert(JSON.stringify(this.form));
     // },
-    register(){
-      axios.post('http://localhost:5000/register', this.form).then(res => {
-        if (res.data.msg) {
-          console.log('Ne moze');
-        } else {
-          this.$router.push('/signin');
-        }
-      }).catch(err => console.log(err));
+    register() {
+      if (this.form.email.length < 1 || this.form.password.length < 1 || this.form.password2.length < 1 || this.form.name.length < 1) {
+        this.Message = 'Fill in empty fields';
+      } else {
+        axios
+          .post('http://localhost:5000/register', this.form)
+          .then(res => {
+            if (res.data.msg) {
+              this.Message = res.data.msg;
+            } else {
+              this.$router.push('/signin');
+            }
+          })
+          .catch(err => console.log(err));
+      }
     }
   }
 };

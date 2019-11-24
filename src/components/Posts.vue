@@ -25,7 +25,7 @@ export default {
   },
   created() {
     axios
-      .get('http://localhost:5000/posts')
+      .get('http://localhost:5000/allposts')
       .then(result => {
         this.posts = result.data;
         console.log(result.data);
