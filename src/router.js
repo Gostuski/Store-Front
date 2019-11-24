@@ -2,6 +2,7 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import Posts from './components/Posts';
 import MyPosts from './components/MyPosts';
+import PostCreate from './components/CreatePost';
 const routes = [
   {
     path: '/signin',
@@ -32,7 +33,15 @@ const routes = [
     name: 'myposts',
     component: MyPosts,
     meta: {
-      requires_auth: false
+      requires_auth: true
+    }
+  },
+  {
+    path: '/postCreate',
+    name: 'postCreate',
+    component: PostCreate,
+    meta: {
+      requires_auth: true
     }
   }
 ];

@@ -2,7 +2,7 @@
   <div>
     <b-navbar toggleable="lg" type="dark" variant="dark">
       <b-navbar-brand id="gos"
-        ><router-link :to="'/posts'">Gostus</router-link></b-navbar-brand
+        ><router-link :to="'/posts'">Gos</router-link></b-navbar-brand
       >
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -48,7 +48,7 @@ export default {
     },
     logOut() {
       this.$cookie.delete('user-token');
-      window.location.reload();
+      this.$router.push('/signin');
     }
   }
 };

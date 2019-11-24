@@ -7,8 +7,8 @@
         label-for="input-1"
         ><b-form-input
           id="input-1"
-          v-model="form.name"
           required
+          v-model="form.name"
           placeholder="Enter name"
         ></b-form-input>
       </b-form-group>
@@ -20,8 +20,8 @@
         ><b-form-input
           id="input-2"
           v-model="form.email"
-          type="email"
           required
+          type="email"
           placeholder="Enter email"
         ></b-form-input>
       </b-form-group>
@@ -30,17 +30,17 @@
         <b-form-input
           id="input-3"
           type="password"
-          v-model="form.password"
           required
+          v-model="form.password"
           placeholder="Enter password"
         ></b-form-input>
       </b-form-group>
       <b-form-group id="input-group-3" label="Confirm password:" label-for="input-3">
         <b-form-input
           id="input-4"
+          required
           type="password"
           v-model="form.password2"
-          required
           placeholder="Confirm password"
         ></b-form-input>
       </b-form-group>
